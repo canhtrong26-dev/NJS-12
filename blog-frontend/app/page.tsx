@@ -17,7 +17,7 @@ export default function Home() {
   // fetch posts từ BE
   const { data, isLoading, isError } = useQuery({
     queryKey: ["posts", page, search],
-    queryFn: () => getPosts(page, limit),
+    queryFn: () => getPosts(page, limit,search),
   });
 
   return (

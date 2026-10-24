@@ -7,8 +7,9 @@ const API_URL = "http://localhost:5000"; //dự án thực tế thì sẽ thay t
 export async function getPosts(
     page: number,
     limit: number,
+    search: string = ""
 ): Promise<PaginatedResponse<Post>> {
-    const res = await fetch(`${API_URL}/posts?page=${page}&limit=${limit}`);
+    const res = await fetch(`${API_URL}/posts?page=${page}&limit=${limit}&search=${search}`);
     if (!res.ok) throw new Error("Không thể tải các bài đăng");
     return res.json();
 }
@@ -38,15 +39,15 @@ export async function getCommentByPostId(
 
 
 //Thêm 1 bình luận mới vào bài viết
-export async function createComment (
+export async function createComment(
     postId: string,
-    data: {author:string ; content: string}
+    data: { author: string; content: string }
 ): Promise<Comment> {
-    const res = await fetch (`${API_URL}/posts/${postId}/comments`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
-  });
-  if (!res.ok) throw new Error("Failed to create comment");
-  return res.json();
+    const res = await fetch(`${API_URL}/posts/${postId}/comments`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+    });
+    if (!res.ok) throw new Error("Failed to create comment");
+    return res.json();
 }
