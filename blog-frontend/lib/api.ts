@@ -17,7 +17,7 @@ export async function getPosts(
 
 //Lấy chi tiết 1 bài viết theo ID
 export async function getPostById(id: string): Promise<Post> {
-    const res = await fetch(`${API_URL}/posts/$${id}`);
+    const res = await fetch(`${API_URL}/posts/${id}`);
     if (!res.ok) throw new Error("không thể tải bài viết");
     return res.json();
 }
@@ -34,9 +34,6 @@ export async function getCommentByPostId(
     if (!res.ok) throw new Error("không thể tải bình luận");
     return res.json();
 }
-
-
-
 
 //Thêm 1 bình luận mới vào bài viết
 export async function createComment(
