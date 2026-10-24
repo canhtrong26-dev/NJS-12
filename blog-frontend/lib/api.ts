@@ -9,7 +9,7 @@ export async function getPosts(
     limit: number,
     search: string = ""
 ): Promise<PaginatedResponse<Post>> {
-    const res = await fetch(`${API_URL}/posts?page=${page}&limit=${limit}&search=${search}`);
+    const res = await fetch(`${API_URL}/posts?page=${page}&limit=${limit}&search=${encodeURIComponent(search)}`);
     if (!res.ok) throw new Error("Không thể tải các bài đăng");
     return res.json();
 }
